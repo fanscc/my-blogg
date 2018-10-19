@@ -1,0 +1,42 @@
+@import '../config/config.scss';
+
+.nav-top {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: $nav-top-height;
+	padding: 0 16px;
+	color: #fff;
+	font-size: 16px;
+	line-height: $nav-top-height;
+	background-color: $nav-color;
+	& > .fr {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        font-size: 13px;
+	}
+	a {
+		color: #f04134;
+		margin-left: 16px;
+	}
+}
+#root {
+    height: 100%;
+}
+.app {
+    height: 100%;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.content {
+    width: 100%;
+}
+.main-content {
+    padding: 20px;
+    height: 100%;
+}

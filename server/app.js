@@ -18,7 +18,7 @@ app.all('*', function(req, res, next) {
  });
  app.use(function (req, res, next) {
     // 我这里把登陆和注册请求去掉了，其他的多有请求都需要进行token校验 
-    if (req.url != '/api/login' && req.url != '/api/addGood') {
+    if (req.url != '/api/login') {
         let token = req.headers.token;
         let secret = 'cky'
         jwt.verify(token, secret, function (err) {

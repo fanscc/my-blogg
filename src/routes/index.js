@@ -5,35 +5,33 @@
  */
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import NavTop from '../components/Common/nav-top';
-import NavSide from '../components/Common/nav-side';
 
 import NotFound from '../components/Common/NotFound';
+import APP from '../App';
+import Login from '../components/login/index';
+import Regist from '../components/login/regist';
 import Home from '../containers/home/Index';
 import HomeAddIndex from '../components/home/addIndex';
 import HomeDetailIndex from '../components/home/DetailIndex';
 const Routes = () => (
-    <div className="app">
-        <div className="wrapper">
-            <NavTop/>
-            <div style={{ display: 'flex',flex:1}}>
-                <NavSide/>
-                <div className="content">
-                    <div className="main-content">
-                        <Router>
-                            <Switch>
-                                <Route path="/" exact component={Home}/>
-                                <Route path="/homeadd" exact component={HomeAddIndex}/>    
-                                <Route path="/homedetail/:id" component={HomeDetailIndex}/>        
-                                <Route path='/404' component={NotFound} />
-                                <Redirect from='*' to='/404' />
-                            </Switch>
-                        </Router>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <Router>
+        <div style={{height: '100%'}}>
+        <Switch>
+            <Route path='/login' component={Login}/> 
+            <Route path='/regist' component={Regist}/> 
+            <APP>            
+                 <Switch>
+                    <Route path="/home" exact component={Home}/>
+                    <Route path="/homeadd" exact component={HomeAddIndex}/>
+                    <Route path="/homeedit/:id" exact component={HomeAddIndex}/>    
+                    <Route path="/homedetail/:id" component={HomeDetailIndex}/>        
+                    <Route path='/404' component={NotFound} />
+                    <Redirect from='*' to='/404' />
+                 </Switch>
+            </APP> 
+            </Switch>
+        </div>                
+    </Router>
 );
 
 export default Routes;

@@ -2,19 +2,20 @@
 var mysql  = require('mysql');  
 var jwt = require('jsonwebtoken');
 var connection = mysql.createConnection({     
-  host     : 'localhost',       
-  user     : 'root',              
-  password : '09701540325',       
-  port: '3306',                   
-  database: 'myblogg', 
+    host     : '123.56.27.207',       
+    user     : 'root',              
+    password : '09701540325',       
+    port: '3306',                   
+    database: 'cky', 
 }); 
 
 connection.connect();
 
 function login(req, res, next) {
     var user = req.body.user
-    var passwrod = req.body.passwrod 
-    let sql = `select * from users where user='${user}' and passwrod=${passwrod}`
+    var password = req.body.Password 
+    console.log(req.body)
+    let sql = `select * from loginuser where user='${user}' and password='${password}'`
     connection.query(sql,function (err, result) {
         if(err){
             return next(err);
@@ -36,7 +37,7 @@ function login(req, res, next) {
                     data:{ 
                         token: token,
                         user:user,
-                        headImg:result[0].headImg             
+                        result: result            
                     },
                     message: '登陆成功'
                 })
@@ -48,8 +49,8 @@ function login(req, res, next) {
 
 function register(req, res, next) {
     var user = req.body.user
-    var passwrod = req.body.passwrod 
-    let sql = `insert into users (user,passwrod) values ('${user}',${passwrod})`
+    var password = req.body.Password 
+    let sql = `insert into loginuser (user,password) values ('${user}','${password}')`
     connection.query(sql,function (err, result) {
         if (err) {
             return next(err);
